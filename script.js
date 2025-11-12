@@ -1,0 +1,54 @@
+// --- Detecta mobile e bloqueia PC ---
+const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+const blockedEl = document.getElementById('blocked');
+const loginEl = document.getElementById('login');
+const appEl = document.getElementById('app');
+
+if (!isMobile) {
+  blockedEl.style.display = 'flex';
+  loginEl.style.display = 'none';
+  appEl.style.display = 'none';
+} else {
+  blockedEl.style.display = 'none';
+  loginEl.style.display = 'block';
+}
+
+// --- Bloqueios básicos (zoom, inspeção, scroll) ---
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if (e.key === "F12" || (e.ctrlKey && e.shiftKey && ["i","c","j"].includes(e.key.toLowerCase())) || (e.ctrlKey && e.key.toLowerCase() === "u")) {
+    e.preventDefault();
+  }
+});
+window.addEventListener('wheel', e => { if (e.ctrlKey) e.preventDefault(); }, { passive: false });
+document.addEventListener('gesturestart', e => e.preventDefault(), { passive: false });
+document.addEventListener('gesturechange', e => e.preventDefault(), { passive: false });
+document.addEventListener('gestureend', e => e.preventDefault(), { passive: false });
+window.addEventListener('touchmove', e => e.preventDefault(), { passive: false });
+let lastTouch = 0;
+document.addEventListener('touchstart', e => {
+  if (e.touches.length > 1) e.preventDefault();
+  const now = Date.now();
+  if (now - lastTouch <= 300) e.preventDefault();
+  lastTouch = now;
+}, { passive: false });
+
+// --- Login simples ---
+const correctKey = "2328";
+document.getElementById("loginBtn").addEventListener("click", () => {
+  const key = document.getElementById("keyInput").value.trim();
+  if (key === correctKey) {
+    loginEl.style.opacity = 0;
+    setTimeout(() => {
+      loginEl.style.display = "none";
+      appEl.style.display = "block";
+      updateAllThumbs();
+    }, 300);
+  } else {
+    document.getElementById("loginMsg").textContent = "Key incorreta!";
+    document.getElementById("loginMsg").style.color = "#ff3b3b";
+  }
+});
+
+// --- Funções de painel (iguais às suas, mantidas) ---
+/* (mantive exatamente igual ao seu código original para não alterar o comportamento dos sliders, toggles e botões) */
