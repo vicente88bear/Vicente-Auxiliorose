@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+<title>Vicente Auxílio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- TELA DE BLOQUEIO -->
+<div id="acessoBloqueado" class="bloqueio" style="display:none;">
+  <h1 class="bloqueio-texto">🚫 Acesso Bloqueado</h1>
+  <p class="bloqueio-sub">Disponível apenas em dispositivos móveis</p>
+</div>
+
+<!-- LOGIN -->
+<div id="login" class="login brilho-borda">
+  <h2 class="login-title">Login</h2>
+  <input id="keyInput" class="key-input" placeholder="Digite sua key" />
+  <button id="loginBtn" class="login-btn">Login</button>
+  <p id="loginMsg" class="login-msg"></p>
+</div>
+
+<!-- APP -->
+<div id="app" class="app" style="display:none;">
+  <div class="tabs">
+    <button id="tabNormal" class="tab active">FF Normal</button>
+    <button id="tabMax" class="tab">FF Max</button>
+  </div>
+
+  <div id="painel" class="painel brilho-borda">
+    <h1 class="titulo"></h1>
+
+    <div class="toggle-row">
+      <span>NoRecoil</span>
+      <label class="switch">
+        <input type="checkbox" id="toggle-recoil">
+        <span class="slider-toggle pink"></span>
+      </label>
+    </div>
+
+    <div class="toggle-row">
+      <span>Aumentar Precisão</span>
+      <label class="switch">
+        <input type="checkbox" id="toggle-precision">
+        <span class="slider-toggle pink"></span>
+      </label>
+    </div>
+
+    <div class="toggle-row">
+      <span>Suavização</span>
+      <label class="switch">
+        <input type="checkbox" id="toggle-suav">
+        <span class="slider-toggle red"></span>
+      </label>
+    </div>
+
+    <p id="percent-suav" class="percent-suav">50%</p>
+    <div class="barra-container" id="container-suav">
+      <div class="barra-suav" id="barra-suav"></div>
+      <div class="thumb-suav" id="thumb-suav"></div>
+      <input type="range" id="slider-suav" min="0" max="100" value="50">
+    </div>
+
+    <p id="percent" class="percent">50%</p>
+    <div class="barra-container" id="container-principal">
+      <div class="barra" id="barra"></div>
+      <div class="thumb" id="thumb"></div>
+      <input type="range" id="slider" min="0" max="100" value="50">
+    </div>
+
+    <div class="injetar-row">
+      <button id="injetarNormal" class="injetar-btn">INJETAR</button>
+      <button id="injetarMax" class="injetar-btn" style="display:none;">INJETAR</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
